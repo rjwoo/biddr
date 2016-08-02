@@ -1,10 +1,21 @@
 <h1>Create New Auction</h1>
-<%= simple_form_for @auction do |f| %>
+<%= @auction.errors.full_messages.join(", ")  %>
+<%= form_for @auction do |f| %>
   <div>
-    <%= f.input :title %>
-    <%= f.input :details %>
-    <%= f.input :ends_on %>
-    <%= f.input :reserve_price %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
   </div>
-  <%= f.button :submit %>
+  <div>
+    <%= f.label :details %>
+    <%= f.text_field :details %>
+  </div>
+  <div>
+    <%= f.label :end_date %>
+    <input type="text" id="datepicker">
+  </div>
+  <div>
+    <%= f.label :reserve_price %>
+    <%= f.text_field :reserve_price %>
+  </div>
+  <%= f.submit %>
 <% end %>
