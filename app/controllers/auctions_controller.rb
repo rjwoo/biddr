@@ -1,5 +1,4 @@
-class AuctionController < ApplicationController
-
+class AuctionsController < ApplicationController
   def new
     @auction = Auction.new
   end
@@ -20,6 +19,7 @@ class AuctionController < ApplicationController
 
   def show
     @auction = Auction.find params[:id]
+    @bid = Bid.new
   end
 
   def update
