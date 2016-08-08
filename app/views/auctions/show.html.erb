@@ -6,7 +6,7 @@
     <p><%= @auction.end_date %><p>
   </div>
   <div>
-    <p><%= @auction.reserve_price %><p>
+    <p>Price: <%= @auction.reserve_price %><p>
   </div>
 
   <div id="bid-form">
@@ -14,8 +14,7 @@
   </div>
 
   <h3>Previous Bids</h3>
-    <% @auction.bids.each do |bid| %>
-      <ul>
-        <%= render "/bids/bid" %>
-      </ul>
-    <% end %>
+
+  <% @auction.bids.each do |bid| %>
+    <%= render "/bids/bid", bid: bid %>
+  <% end %>

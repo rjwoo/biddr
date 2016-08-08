@@ -9,7 +9,7 @@ class AuctionsController < ApplicationController
   def create
     @auction = Auction.new auction_params
     if @auction.save
-      redirect_to auctions_path, notice: "Bid Created!"
+      redirect_to auction_path(@auction), notice: "Bid Created!"
     else
       render :new
     end

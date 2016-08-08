@@ -1,7 +1,7 @@
 class BidsController < ApplicationController
+  before_action :find_bids, only: [:edit, :show, :update]
 
   def new
-    @auction = Auction.find params[:auction_id]
     @bid = Bid.new
   end
 
@@ -21,4 +21,28 @@ class BidsController < ApplicationController
     end
   end
 
+  def index
+    @bids = Bid.all
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    bid_params = params.require(:bid).permit(:bid_price)
+    if @bid.update bid_params
+      redirect_to bid_path(@bid)
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def find_bid
+    @bid = Bid.find params[:id]
+  end
 end

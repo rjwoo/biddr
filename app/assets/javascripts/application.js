@@ -15,3 +15,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery.ui.datepicker
+
+
+document.addEventListener("turbolinks:load", function() {
+  $('#datepicker').datepicker({
+    format: 'yyyy-mm-dd'
+  });
+})
