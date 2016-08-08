@@ -4,5 +4,6 @@
   <h3><%= link_to auction.title, auction_path(auction) %></h3>
   <p><%= auction.end_date %><p>
   <p><%= auction.reserve_price %><p>
+  <%= link_to "Delete", auction, method: :delete, data: { confirm: "Are you sure?" } %>
   <hr>
 <% end %>

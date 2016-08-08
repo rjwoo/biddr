@@ -1,10 +1,12 @@
 class AuctionsController < ApplicationController
+  before_action :find_auction, only: [:show, :update, :destroy]
+  before_action :auction_params, only: [:create, :update]
+
   def new
     @auction = Auction.new
   end
 
   def create
-    auction_params = params.require(:auction).permit(:title, :details, :end_date, :reserve_price)
     @auction = Auction.new auction_params
     if @auction.save
       redirect_to auctions_path, notice: "Bid Created!"
@@ -18,14 +20,33 @@ class AuctionsController < ApplicationController
   end
 
   def show
-    @auction = Auction.find params[:id]
     @bid = Bid.new
   end
 
   def update
+    if @auction.update auction_params
+      redirect_to auction_path(@auction), notice: "Auction Updated!"
+    else
+      render :edit
+    end
   end
 
   def edit
+  end
+
+  def destroy
+    @auction.destroy
+    redirect_to auctions_path
+  end
+
+  private
+
+  def find_auction
+    @auction = Auction.find params[:id]
+  end
+
+  def auction_params
+    params.require(:auction).permit(:title, :details, :end_date, :reserve_price)
   end
 
 end
